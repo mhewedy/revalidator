@@ -3,15 +3,17 @@ package com.elm.common.revalidator.validators;
 import com.elm.common.revalidator.Validator;
 import com.elm.common.revalidator.annotations.Requires;
 import com.elm.common.revalidator.annotations.Requires.Require;
-import com.elm.util.Log;
+import com.elm.common.revalidator.util.ApplicationResult;
 import com.elm.common.revalidator.util.Util;
-import com.elm.resultobjects.ApplicationResult;
+import org.apache.log4j.Logger;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
 public class RequiresValidator extends AbstractValidator {
+
+    private static Logger log = Logger.getLogger(RequiresValidator.class);
 
     @Override
     public ApplicationResult handle(String name, Object value,
@@ -126,7 +128,7 @@ public class RequiresValidator extends AbstractValidator {
             Field field = object.getClass().getDeclaredField(fieldName);
             return Validator.validateField(field, object);
         } catch (Exception e) {
-            Log.info(RequiresValidator.class, "Exception in RequiresValidator", e);
+            log.info("Exception in RequiresValidator", e);
         }
         return result;
     }
@@ -141,7 +143,7 @@ public class RequiresValidator extends AbstractValidator {
                     return result;
                 }
             } catch (Exception e) {
-                Log.info(RequiresValidator.class, "Exception in RequiresValidator", e);
+                log.info("Exception in RequiresValidator", e);
             }
         }
         return result;

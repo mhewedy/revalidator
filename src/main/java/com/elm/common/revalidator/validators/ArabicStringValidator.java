@@ -1,9 +1,8 @@
 package com.elm.common.revalidator.validators;
 
 import com.elm.common.revalidator.annotations.ArabicString;
-import com.elm.common.revalidator.util.ElmStringUtils;
+import com.elm.common.revalidator.util.ApplicationResult;
 import com.elm.common.revalidator.util.Util;
-import com.elm.resultobjects.ApplicationResult;
 
 import java.lang.annotation.Annotation;
 
@@ -23,8 +22,7 @@ public class ArabicStringValidator extends AbstractValidator {
 
             if (value == null
                     || ((String) value).trim().length() == 0
-                    || !ElmStringUtils.isArabic((String) value, false,
-                    annot.withNumbers())) {
+                    || !Util.isArabic((String) value,annot.withNumbers())) {
                 result.setAsError(Util.getMessage("not.arabic", Util.getField(name)));
             }
         } catch (ClassCastException ex) {

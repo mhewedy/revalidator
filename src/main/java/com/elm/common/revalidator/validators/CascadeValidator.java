@@ -2,7 +2,7 @@ package com.elm.common.revalidator.validators;
 
 import com.elm.common.revalidator.Validator;
 import com.elm.common.revalidator.annotations.Cascade;
-import com.elm.resultobjects.ApplicationResult;
+import com.elm.common.revalidator.util.ApplicationResult;
 
 import java.lang.annotation.Annotation;
 import java.util.Collection;

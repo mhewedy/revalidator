@@ -2,8 +2,8 @@ package com.elm.common.revalidator.validators;
 
 import com.elm.common.revalidator.mapping.Mapper;
 import com.elm.common.revalidator.mapping.Rule;
-import com.elm.util.Log;
-import com.elm.resultobjects.ApplicationResult;
+import com.elm.common.revalidator.util.ApplicationResult;
+import org.apache.log4j.Logger;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -17,6 +17,8 @@ import java.util.Map;
  * @author mhewedy
  */
 public abstract class AbstractValidator {
+
+    private static Logger log = Logger.getLogger(AbstractValidator.class);
 
     private static final Map<String, AbstractValidator> VALIDATORS_CACHE = new HashMap<String, AbstractValidator>();
 
@@ -52,7 +54,7 @@ public abstract class AbstractValidator {
                         .newInstance();
             }
         } catch (Exception ex) {
-            Log.info(AbstractValidator.class, "Exception in AbstractValidator", ex);
+            log.info("Exception in AbstractValidator", ex);
         }
         return null;
     }

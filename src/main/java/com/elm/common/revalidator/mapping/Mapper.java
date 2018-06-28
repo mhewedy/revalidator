@@ -1,6 +1,6 @@
 package com.elm.common.revalidator.mapping;
 
-import com.elm.util.Log;
+import org.apache.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public class Mapper {
+    private static Logger log = Logger.getLogger(Mapper.class);
 
     private static final Revalidate REVALIDATE = initRevalidate();
 
@@ -79,12 +80,12 @@ public class Mapper {
                 is.close();
                 return revalidate;
             } else {
-                Log.warn(Revalidate.class, "cannot find revalidate.xml in classpath");
+                log.warn("cannot find revalidate.xml in classpath");
             }
         } catch (JAXBException e) {
-            Log.error(Revalidate.class, "cannot parse revalidate.xml " + e.getMessage());
+            log.error("cannot parse revalidate.xml " + e.getMessage());
         } catch (IOException e) {
-            Log.error(Revalidate.class, e.getMessage());
+            log.error(e.getMessage());
         }
         return new Revalidate();
     }

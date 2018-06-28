@@ -1,8 +1,7 @@
 package com.elm.common.revalidator.validators;
 
 
-
-import com.elm.resultobjects.ApplicationResult;
+import com.elm.common.revalidator.util.ApplicationResult;
 
 import java.lang.annotation.Annotation;
 

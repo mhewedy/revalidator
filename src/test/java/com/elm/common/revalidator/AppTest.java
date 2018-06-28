@@ -1,7 +1,7 @@
 package com.elm.common.revalidator;
 
 import com.elm.common.revalidator.objects.Person;
-import com.elm.resultobjects.ApplicationResult;
+import com.elm.common.revalidator.util.ApplicationResult;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -45,7 +45,7 @@ public class AppTest
         p.setSomeNumber("0");
 
         ApplicationResult result = Validator.validate(p);
-        assertEquals(true, result.isSuccessfull());
+        assertTrue(result.isSuccessfull());
     }
 
     public void test2(){
@@ -54,13 +54,14 @@ public class AppTest
         p.setSomeNumber("0");
 
         ApplicationResult result = Validator.validate(p);
-        assertEquals(false, result.isSuccessfull());
+        assertFalse(result.isSuccessfull());
     }
 
     public void test3(){
         Person p = new Person();
         p.setId("0");
 
+        Validator.setResourceBundle(null);
         ApplicationResult result = Validator.validate(p);
         assertEquals("isNotAnumber", result.getResultMessage());
     }

@@ -4,10 +4,10 @@ import com.elm.common.revalidator.annotations.Optional;
 import com.elm.common.revalidator.mapping.Mapper;
 import com.elm.common.revalidator.mapping.Rule;
 import com.elm.common.revalidator.mapping.Rule.Level;
+import com.elm.common.revalidator.util.ApplicationResult;
 import com.elm.common.revalidator.util.Util;
 import com.elm.common.revalidator.validators.AbstractValidator;
-import com.elm.resultobjects.ApplicationResult;
-import com.elm.util.Log;
+import org.apache.log4j.Logger;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public final class Validator {
+
+    private static Logger log = Logger.getLogger(Validator.class);
+
     private Validator() {
     }
 
@@ -28,9 +31,9 @@ public final class Validator {
     }
 
     public static ApplicationResult validate(Object object) {
-        Class<? extends Object> clazz = object.getClass();
-        
-        Log.debug(Validator.class, "Validating object: " + object);
+        Class<?> clazz = object.getClass();
+
+        log.debug("Validating object: " + object);
         ApplicationResult result = validate(null, object, Level.TYEP);
 
         Field[] fields = clazz.getDeclaredFields();
@@ -38,7 +41,7 @@ public final class Validator {
 
             for (Field field : fields) {
                 if (result.isSuccessfull()) {
-                	Log.debug(Validator.class, "Validating field : " + field.getName() + " in object: " + object);
+                    log.debug("Validating field : " + field.getName() + " in object: " + object);
                     result = validate(field, object, Level.FIELD);
                 }
             }
@@ -50,7 +53,7 @@ public final class Validator {
         ApplicationResult result = new ApplicationResult();
 
         List<Rule> rules = Mapper.getRules();
-        Log.debug(Validator.class, "validating " + field.getName());
+        log.debug("validating " + field.getName());
 
         for (Rule rule : rules) {
             try {
@@ -63,7 +66,7 @@ public final class Validator {
                     break;
                 }
             } catch (ClassNotFoundException e) {
-                Log.info(Validator.class, "Exception in Validator", e);
+                log.info("Exception in Validator", e);
             }
         }
         return result;
@@ -87,7 +90,7 @@ public final class Validator {
                     break;
                 }
             } catch (ClassNotFoundException e) {
-                Log.info(Validator.class, "Exception in Validator", e);
+                log.info("Exception in Validator", e);
             }
         }
         return result;
