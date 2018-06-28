@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<revalidate basePackage="com.elm.common.revalidator">
+    <!-- order is important -->
+
+    <rule annotation="annotations.Greater" level="TYEP" validatorImpl="validators.GreaterValidator" />
+
+    <!--  the following 3 should reside at the top of FIELD validator -->
+    <rule annotation="annotations.Cascade" level="FIELD" validatorImpl="validators.CascadeValidator" />
+    <rule annotation="annotations.NotNull" level="FIELD" validatorImpl="validators.NotNullValidator" />
+    <rule annotation="annotations.NotEmpty" level="FIELD" validatorImpl="validators.NotEmptyValidator" />
+    <!-- end required top 3 validators -->
+
+    <rule annotation="annotations.ArabicString" level="FIELD" validatorImpl="validators.ArabicStringValidator" />
+    <rule annotation="annotations.Values" level="FIELD" validatorImpl="validators.ValuesValidator" />
+    <rule annotation="annotations.Timestamp" level="FIELD" validatorImpl="validators.TimestampValidator" />
+    <rule annotation="annotations.Number" level="FIELD" validatorImpl="validators.NumberValidator" />
+    <rule annotation="annotations.PlateChar" level="FIELD" validatorImpl="validators.PlateCharValidator" />
+    <rule annotation="annotations.Requires" level="FIELD" validatorImpl="validators.RequiresValidator" />
+    <rule annotation="annotations.NIN" level="FIELD" validatorImpl="validators.NINValidator" />
+    <rule annotation="annotations.Base64" level="FIELD" validatorImpl="validators.Base64Validator" />
+    <rule annotation="annotations.Pattern" level="FIELD" validatorImpl="validators.PatternValidator" />
+
+</revalidate>

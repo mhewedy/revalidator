@@ -1,0 +1,5 @@
+.jazzignore
+**/rebel.xml
+.idea
+.settings
+.classpath

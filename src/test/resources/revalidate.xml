@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<revalidate basePackage="com.elm.common.revalidator.myvalidators">
+
+    <rule annotation="annotations.IsNumber" level="FIELD" validatorImpl="validators.IsNumberValidator" />
+
+</revalidate>
